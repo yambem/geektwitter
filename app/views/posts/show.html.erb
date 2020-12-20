@@ -1,0 +1,106 @@
+<div class="center">
+    <div class = "container">
+        <h2>商品詳細</h2>
+        <div class="clearfix">
+            <%= image_tag @post.image_url, :size =>'500x300', class: "float-md-left mr-md-4" %>
+            <h3 class:"mt-4 mt-md-0"><%= @post.product.name %></h3>
+            <p>　　ブランド名：<%= @post.product.brand.name %></p>
+            <p>　　Price：¥<%= @post.price %></p>
+            <p><%= @post.url %></p>
+
+
+            <% if @post.user_id != current_user.id %>
+                <div class="film-menu">
+                    <p>　投稿者：<%= link_to(@post.user.name, user_path(@post.user.id), class: "link" ) %></p>
+                </div>
+            <% end %>
+
+            <% if @post.user_id == current_user.id %>
+                <div class="film-menu">
+                    <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-warning" %>
+                    <%= link_to "削除する", post_path, method: :delete, class: "btn btn-outline-warning" %>
+                </div>
+                <br>
+            <% end %>   
+        </div>
+    </div>
+
+    <h2>同じ商品の投稿</h2>
+    <div class="row">
+          <% @posts.each do |t| %>
+          <% unless @post.created_at == t.created_at%>
+          <% if @post.product_id == t.product_id%>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a class="MATSUOKA" href="/posts/<%= t.id %>"><%= image_tag t.image_url, size: "334x200" if t.image? %></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a><%= link_to t.product.name, post_path(t.id) %></a>
+                </h4>
+                <h5>¥<%= t.price%></h5>
+                <p class="card-text"><%= t.product.brand.name%></p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">
+                  <% if user_signed_in? %>
+                      <% if current_user.already_liked?(t) %>
+                          <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>                
+                              <i class="fas fa-heart"></i><%= t.likes.count %>
+                          <% end %>
+                      <% else %>
+                          <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+                              <i class="far fa-heart"></i><%= t.likes.count %>
+                          <% end %>
+                      <% end %>
+                  <% else %>
+                    <i class="far fa-heart"></i><%= t.likes.count %>
+                  <% end %>
+              　</small>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+          <% end %>
+    </div>
+
+    <h2>同じブランドの投稿</h2>
+    <div class="row">
+          <% @posts.each do |t| %>
+          <% unless @post.created_at == t.created_at%>
+          <% if @post.product.brand_id == t.product.brand_id%>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a class="MATSUOKA" href="/posts/<%= t.id %>"><%= image_tag t.image_url, size: "334x200" if t.image? %></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a><%= link_to t.product.name, post_path(t.id) %></a>
+                </h4>
+                <h5>¥<%= t.price%></h5>
+                <p class="card-text"><%= t.product.brand.name%></p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">
+                  <% if user_signed_in? %>
+                      <% if current_user.already_liked?(t) %>
+                          <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>                
+                              <i class="fas fa-heart"></i><%= t.likes.count %>
+                          <% end %>
+                      <% else %>
+                          <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+                              <i class="far fa-heart"></i><%= t.likes.count %>
+                          <% end %>
+                      <% end %>
+                  <% else %>
+                    <i class="far fa-heart"></i><%= t.likes.count %>
+                  <% end %>
+              　</small>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+          <% end %>
+    </div>
+
+</div>

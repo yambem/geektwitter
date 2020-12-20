@@ -1,0 +1,12 @@
+<h3>プロダクト一覧</h3>
+<div class="products-container">
+  <% @products.each do |t| %>
+    <div class="product">
+      <%= t.name %>
+      <%= t.brand.name%>
+      <% if current_user.admin? %>  
+      <%= button_to "削除する", product_path(t.id), class: "btn btn-outline-primary" ,method: :delete %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

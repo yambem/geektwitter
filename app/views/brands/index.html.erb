@@ -1,0 +1,10 @@
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+
+<% if user_signed_in? %>
+<%= link_to "マイページへ", user_path(current_user.id) %>　
+<% end %>
+
+<%= link_to "products#index", products_path %>
+<%= link_to "posts#index", posts_path %>
+<%= link_to "brands#new", new_brand_path %>
+

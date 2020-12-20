@@ -1,0 +1,21 @@
+
+
+<div class="product-new">
+  <div class="center">
+    <h3>商品追加</h3>
+    <%= form_for(@product, :url => { controller:'products', action:'create'})do |f| %>
+      <div class="field">
+        <%= f.label :商品名 %>
+        <%= f.text_field :name, :size => 30 %>
+        <br>
+        <br>
+        <%= f.label :ブランド選択 %>
+        <%= f.collection_select :brand_id, Brand.all, :id, :name, include_blank: "選択して下さい" %>
+        <br>
+        <br>
+      </div>
+      <%= f.submit "追加する" %>
+    <% end %>
+  </div>
+</div>
+
