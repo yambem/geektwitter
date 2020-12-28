@@ -2,12 +2,12 @@ class PostsController < ApplicationController
     before_action :authenticate_user!,
 
     def index
-        if params[:search] != nil && params[:search] != ''
-            #部分検索かつ複数検索
-            @posts = Post.where("url LIKE ? ", "%" + params[:search] + "%").or(Post.where("price LIKE ? ", "%" + params[:search] + "%"))
+        if params[:search] == nil
+            @posts= Post.all
         else
-        @posts = Post.all
+            @posts = Post.where("product_id.brand_id LIKE ? ", params[:search] )
         end
+        @brands = Brand.all
     end
 
     def new

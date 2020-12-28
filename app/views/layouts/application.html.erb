@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
   </head>
   <body>
+  <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
     <% if user_signed_in? %>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: rgba(0,0,0,0.8);">
         <a class="navbar-brand" href="/" style="color: white;">ホーム</a>
@@ -20,19 +23,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
-                出品
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to("商品追加", new_product_path, class: "dropdown-item" ) %>
-                <%= link_to("新規出品", new_post_path, class: "dropdown-item" ) %>
-                <div class="dropdown-divider"></div>
-                <%= link_to("使い方", top_top_path, class: "dropdown-item" ) %>
-              </div>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/products/new" style="color: white;">商品追加<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/posts/new" style="color: white;">投稿する<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/posts/new" style="color: white;">新規出品<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/<%= current_user.id %>" style="color: white;">マイページ</a>
@@ -45,7 +41,7 @@
       </nav>
     <% else %>
       <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: rgba(0,0,0,0.8);">
-        <a class="navbar-brand" href="/home" style="color: white;">トップ</a>
+        <a class="navbar-brand" href="/top/top" style="color: white;">トップ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,11 +59,7 @@
     <% end %>
     <%= yield %>
       <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-      </div>
-    </footer>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

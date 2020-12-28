@@ -6,7 +6,8 @@
             <h3 class:"mt-4 mt-md-0"><%= @post.product.name %></h3>
             <p>　　ブランド名：<%= @post.product.brand.name %></p>
             <p>　　Price：¥<%= @post.price %></p>
-            <p><%= @post.url %></p>
+            <a href="<%= @post.url %>">商品掲載サイト</a>
+            
 
 
             <% if @post.user_id != current_user.id %>
@@ -25,14 +26,15 @@
         </div>
     </div>
 
-    <h2>同じ商品の投稿</h2>
+      <h2>同じ商品の投稿</h2>
+  <div class="col-lg-9">
     <div class="row">
           <% @posts.each do |t| %>
           <% unless @post.created_at == t.created_at%>
           <% if @post.product_id == t.product_id%>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a class="MATSUOKA" href="/posts/<%= t.id %>"><%= image_tag t.image_url, size: "334x200" if t.image? %></a>
+              <a class="MATSUOKA" href="/posts/<%= t.id %>"><%= image_tag t.image_url, size: "250x200" if t.image? %></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a><%= link_to t.product.name, post_path(t.id) %></a>
@@ -63,15 +65,17 @@
           <% end %>
           <% end %>
     </div>
+  </div>
 
     <h2>同じブランドの投稿</h2>
+  <div class="col-lg-9">
     <div class="row">
           <% @posts.each do |t| %>
           <% unless @post.created_at == t.created_at%>
           <% if @post.product.brand_id == t.product.brand_id%>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a class="MATSUOKA" href="/posts/<%= t.id %>"><%= image_tag t.image_url, size: "334x200" if t.image? %></a>
+              <a class="MATSUOKA" href="/posts/<%= t.id %>"><%= image_tag t.image_url, size: "250x200" if t.image? %></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a><%= link_to t.product.name, post_path(t.id) %></a>
@@ -102,5 +106,6 @@
           <% end %>
           <% end %>
     </div>
+  </div>
 
 </div>
