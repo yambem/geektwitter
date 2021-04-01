@@ -2,11 +2,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!,
 
     def index
-        if params[:search] == nil
-            @posts= Post.all
-        else
-            @posts = Post.where("product_id.brand_id LIKE ? ", params[:search] )
-        end
+        @posts = params[:brand_id].present? ? Brand.find(params[:brand_id]).products.posts : Post.all
         @brands = Brand.all
     end
 

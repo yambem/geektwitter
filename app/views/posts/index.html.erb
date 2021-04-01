@@ -13,6 +13,17 @@
           <% @brands.each do |t| %>
           <a href="#" class="list-group-item"><%= t.name %></a>
           <% end %>
+
+          <%= form_tag posts_path, method: :get, class: 'boards__searchForm' do %>
+            <%= select_tag :brand_id,
+                          options_from_collection_for_select(Brand.all, :id, :name, params[:brand_id]),
+                          {
+                            prompt: '絞り込み検索',
+                            onchange: 'submit(this.form);'
+                          }
+            %>
+          <% end %>
+
         </div>
 
       </div>
@@ -87,28 +98,28 @@
   </div>
   <!-- /.container -->
 <div class="spinner-border text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-secondary" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-success" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-danger" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-warning" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-light" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 <div class="spinner-border text-dark" role="status">
-  <span class="visually-hidden">Loading...</span>
+  <span class="visually-hidden">こがりょうたろう　くぼみずき　やまもとしょうた</span>
 </div>
 </body>
 
